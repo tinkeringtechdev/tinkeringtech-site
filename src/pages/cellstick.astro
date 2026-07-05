@@ -1,0 +1,53 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="CellStick" description="CellStick — SIM800H based Arduino cellular board.">
+  <h1>CellStick</h1>
+
+  <h2>Getting Started with the CellStick</h2>
+  <p>The board comes pre-flashed with a test program. All you have to do is the following to run an out-of-box diagnostic:</p>
+  <ul>
+    <li>Connect a cellular antenna to the uFL connector.</li>
+    <li>Connect a 3.7V LiPo battery to the JST connector.</li>
+    <li>Insert a SIM in the tray on the underside.</li>
+    <li>Connect a micro USB cable to the device.</li>
+    <li>The unit will now power on (Green LED). Hold down the tactile switch for a few seconds, and the blue netstat light should start flashing to indicate the system power up.</li>
+    <li>Launch the Arduino IDE, and a serial monitor at 115200 baud to see the CellStick diagnostic menu print out.</li>
+  </ul>
+
+  <p>There-after, if you would like to write your own code on the CellStick, the Arduino IDE with UNO as the board type will do. The Arduino library committed to GitHub at <a href="https://github.com/tinkeringtech/Cellstick">github.com/tinkeringtech/Cellstick</a> is the library used with the board.</p>
+
+  <p>The CellStick comes pre-loaded with the Arduino bootloader on the ATMEGA-32u.</p>
+
+  <h2>CellStick pin information</h2>
+  <p><strong>JST 2-pin</strong> – Battery input connector. It works with a Lipoly battery but since the charge rate is 500mA we suggest a 500mAH or 1200mAH battery. A battery must be connected to this connector in order to power the SIM800H. The purpose of this additional power source is to supply enough current to the SIM800H when functioning. The onboard charging circuitry will keep the LiPo battery connected to the JST charged at all times via the USB port or a battery connected to VBAT.</p>
+  <p><strong>VBAT</strong> – External power supply when the CellStick is not being powered through the micro USB connector. The VBAT can be anything up to 16V.</p>
+  <p><strong>PK</strong> – This pin is tied to the tactile switch and controls the power up of the SIM800H module. Tie it to ground permanently to power on the module when the board is powered.</p>
+
+  <h2>CellStick SIM800H test point information</h2>
+  <p>All the pins of the SIM800H module were purposely broken out on the PCB to enable the user to add other functionality if needed. This can include adding voice, bluetooth or FM radio functionality. These additional features have not been tested but should work with the relevant circuitry. Please refer to SIMcom's documentation for more details.</p>
+  <ul>
+    <li>TP1 – Output voltage 2.8V</li>
+    <li>TP2 – PWM</li>
+    <li>TP3 – ADC</li>
+    <li>TP6 – VBAT</li>
+    <li>TP7 – MIC2N</li>
+    <li>TP8 – MIC2P</li>
+    <li>TP9 – MIC1P</li>
+    <li>TP10 – SPK2N</li>
+    <li>TP11 – SPL2P</li>
+    <li>TP12 – SPK1N</li>
+    <li>TP13 – SPK1P</li>
+    <li>TP14 – BT_ANT</li>
+    <li>TP15 – FM_ANT_P</li>
+  </ul>
+  <p>For more details on each of the pins, please refer to the <a href="http://www.adafruit.com/datasheets/sim800h_hardware_design_v1.00.pdf">SIM800H hardware userguide</a>.</p>
+
+  <h2>CellStick Schematic</h2>
+  <img src="/images/pages/cellstick/schematic.png" alt="CellStick schematic" />
+  <ul>
+    <li><a href="https://www.dropbox.com/s/2jmo0koedr5vq7y/Cellstick_TinkeringTech.sch?dl=0">CellStick EagleCAD .sch</a></li>
+    <li><a href="https://www.dropbox.com/s/2dx50n3et187jw4/Cellstick_TinkeringTech.brd?dl=0">CellStick EagleCAD .brd</a></li>
+    <li><a href="https://github.com/tinkeringtech/Cellstick">CellStick GitHub repository</a></li>
+  </ul>
+</BaseLayout>

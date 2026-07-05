@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 5);
+---
+<BaseLayout title="Home" description="DIY electronics projects, builds, and technology notes from TinkeringTech.">
+  <h1>TinkeringTech</h1>
+  <p>DIY electronics projects and technology.</p>
+
+  <h2>DIY Electronics</h2>
+  <ul>
+    <li><a href="/cellstick/">CellStick</a></li>
+    <li><a href="/photoresistor-xbee-code/">Photoresistor XBEE code</a></li>
+    <li><a href="/hall-sensor-breakout/">Hall Sensor Breakout</a></li>
+    <li><a href="/push-button-xbee-code/">Push button XBEE code</a></li>
+    <li><a href="/blog/peace-pendant-how-to/">Rechargeable Sound Reactive LED Peace Pendant</a></li>
+  </ul>
+
+  <h2>Recent Blog Posts</h2>
+  <ul class="post-list">
+    {posts.map((post) => (
+      <li>
+        <span class="post-date">{post.data.pubDate.toDateString()}</span>
+        <a href={`/blog/${post.slug}/`}>{post.data.title}</a>
+      </li>
+    ))}
+  </ul>
+  <p><a href="/blog/">See all posts &rarr;</a></p>
+
+  <h2>Contact</h2>
+  <p>Have a question about a project? Reach out via email.</p>
+</BaseLayout>

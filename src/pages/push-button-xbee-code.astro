@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Push button XBEE code">
+  <h1>Push button XBEE code</h1>
+
+  <p><strong>Push button example transmitter XBEE</strong></p>
+  <pre><code>{`#include <NewSoftSerial.h>
+NewSoftSerial xbeeSerial(4, 5);
+int buttonState = 0;
+
+void setup() {
+  Serial.begin(9600);
+  xbeeSerial.begin(9600);
+  pinMode(2, INPUT); // initialize the pushbutton pin as an input
+}
+
+void loop() {
+  buttonState = digitalRead(2); // Read the pin 2 value, a 1 or 0
+  Serial.print(buttonState);    // print button value to screen
+  Serial.print("\\n");           // line break
+  xbeeSerial.print(buttonState); // print value to xbee (serial port)
+  delay(100); // stop the program for some time
+}`}</code></pre>
+
+  <p><strong>Push button example receiver XBEE</strong></p>
+  <pre><code>{`#include <NewSoftSerial.h>
+NewSoftSerial xbeeSerial(4, 5);
+
+void setup() {
+  Serial.begin(9600);
+  xbeeSerial.begin(9600);
+  pinMode(13, OUTPUT);
+}
+
+void loop() {
+  while (xbeeSerial.available()) {
+    char getData = xbeeSerial.read();
+    Serial.print(getData);
+    Serial.print("\\n");
+    if (getData == '1') {
+      digitalWrite(13, HIGH); // turn LED on
+    } else {
+      digitalWrite(13, LOW); // turn LED off
+    }
+  }
+  delay(100); // stop the program for some time
+}`}</code></pre>
+</BaseLayout>

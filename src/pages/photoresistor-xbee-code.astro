@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Photoresistor XBEE code">
+  <h1>Photoresistor XBEE code</h1>
+
+  <p><strong>Photoresistor example transmitter XBEE</strong></p>
+  <pre><code>{`#include <NewSoftSerial.h>
+NewSoftSerial xbeeSerial(4, 5);
+
+void setup() {
+  Serial.begin(9600);
+  xbeeSerial.begin(9600);
+  pinMode(2, INPUT); // Assign pin2 as an output
+}
+
+void loop() {
+  int analogdata = analogRead(0); // Read the A0 value
+  Serial.print(analogdata);       // print raw A0 value
+  Serial.print("\\n");             // next line
+  xbeeSerial.print(analogdata);   // print A0 value to xbee (serial port)
+  delay(100); // stop the program for some time
+}`}</code></pre>
+
+  <p><strong>Photoresistor example receiver XBEE</strong></p>
+  <pre><code>{`#include <NewSoftSerial.h>
+NewSoftSerial xbeeSerial(4, 5); // Pin 4 and 5 for the Xbee TX and RX
+
+void setup() {
+  Serial.begin(9600);
+  xbeeSerial.begin(9600);
+}
+
+void loop() {
+  while (xbeeSerial.available()) {
+    for (int i = 0; i < 4; i++) {
+      char getData = xbeeSerial.read(); // Grab the Xbee data
+      delay(1); // small delay required at 9600 baud
+      Serial.print(getData); // See if 4 characters have been received before printing
+      if (i == 3) {
+        Serial.print("\\n"); // Print a line break
+      }
+    }
+  }
+  delay(100); // stop the program for some time
+}`}</code></pre>
+</BaseLayout>
