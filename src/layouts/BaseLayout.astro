@@ -13,71 +13,261 @@ const { title, description = 'DIY electronics projects and technology from Tinke
   <title>{title} – TinkeringTech</title>
   <meta name="description" content={description} />
   <link rel="icon" href="/images/site/favicon.png" />
+  <link rel="apple-touch-icon" href="/images/site/logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --accent: #1a5f3f;
-      --text: #222;
-      --bg: #fff;
-      --muted: #666;
+      --accent: #0c7a6b;
+      --accent-dark: #095c51;
+      --accent-soft: #e6f5f1;
+      --ink: #16211f;
+      --muted: #5c6b68;
+      --bg: #ffffff;
+      --surface: #f6faf9;
+      --border: #e3ece9;
+      --shadow: 0 1px 2px rgba(15, 35, 30, 0.05), 0 8px 24px rgba(15, 35, 30, 0.07);
+      --radius: 12px;
     }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: var(--text);
+      color: var(--ink);
       background: var(--bg);
-      line-height: 1.6;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
     }
+    h1, h2, h3, .brand-name {
+      font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+      letter-spacing: -0.01em;
+    }
+
     header {
-      border-bottom: 1px solid #eee;
-      padding: 1.25rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background-color: rgba(255, 255, 255, 0.86);
+      background-image: radial-gradient(circle at 1px 1px, rgba(12, 122, 107, 0.09) 1px, transparent 0);
+      background-size: 18px 18px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem;
+    }
+    .header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.75rem;
     }
     .brand {
-      font-size: 1.4rem;
-      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
       text-decoration: none;
-      color: var(--text);
+      color: var(--ink);
+    }
+    .brand img {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+    }
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+    }
+    .brand-name {
+      font-size: 1.25rem;
+      font-weight: 700;
     }
     .tagline {
       color: var(--muted);
-      font-size: 0.9rem;
-      margin: 0.25rem 0 1rem;
+      font-size: 0.8rem;
+      margin: 0;
+    }
+    nav {
+      display: flex;
+      gap: 1.5rem;
     }
     nav a {
-      margin-right: 1.5rem;
+      position: relative;
       text-decoration: none;
-      color: var(--accent);
+      color: var(--ink);
       font-weight: 600;
+      font-size: 0.92rem;
+      padding-bottom: 3px;
     }
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -2px;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.2s ease;
+    }
+    nav a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+    nav a:hover {
+      color: var(--accent-dark);
+    }
+
     main {
       max-width: 800px;
       margin: 0 auto;
-      padding: 2rem 1.5rem 4rem;
+      padding: 3rem 1.5rem 4rem;
     }
-    img { max-width: 100%; height: auto; border-radius: 4px; }
-    h1 { font-size: 2rem; }
-    .post-list { list-style: none; padding: 0; }
-    .post-list li { margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid #eee; }
-    .post-date { color: var(--muted); font-size: 0.85rem; display: block; margin-bottom: 0.25rem; }
+    h1 {
+      font-size: 2.1rem;
+      margin-bottom: 0.3rem;
+    }
+    h2 {
+      font-size: 1.35rem;
+      margin-top: 2.5rem;
+      padding-left: 0.75rem;
+      border-left: 3px solid var(--accent);
+    }
+    .lede {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-top: 0;
+    }
+    a {
+      color: var(--accent-dark);
+    }
+    a:hover {
+      color: var(--accent);
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+
+    ul:not(.post-list):not(.card-grid) {
+      padding-left: 1.1rem;
+    }
+    ul:not(.post-list):not(.card-grid) li::marker {
+      color: var(--accent);
+    }
+
+    .post-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .post-list li {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+    .post-list li:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+      border-color: var(--accent);
+    }
+    .post-list a {
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .post-date {
+      color: var(--muted);
+      font-size: 0.78rem;
+      display: block;
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .card-grid {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 0.75rem;
+    }
+    .card-grid li {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      border-radius: var(--radius);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+    }
+    .card-grid li:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+      border-color: var(--accent);
+    }
+    .card-grid a {
+      display: block;
+      padding: 1rem 1.1rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: var(--ink);
+    }
+    .card-grid a:hover {
+      color: var(--accent-dark);
+    }
+
+    pre {
+      border-radius: var(--radius);
+    }
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
     footer {
       text-align: center;
       color: var(--muted);
       font-size: 0.85rem;
-      padding: 2rem 1.5rem;
-      border-top: 1px solid #eee;
+      padding: 2.5rem 1.5rem;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
     }
-    footer a { color: var(--muted); }
+    footer a {
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    footer a:hover {
+      color: var(--accent-dark);
+    }
   </style>
 </head>
 <body>
   <header>
-    <a class="brand" href="/">TinkeringTech</a>
-    <p class="tagline">DIY electronics projects and technology</p>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/diy-electronics/">DIY Electronics</a>
-      <a href="/blog/">Blog</a>
-    </nav>
+    <div class="header-inner">
+      <a class="brand" href="/">
+        <img src="/images/site/logo.png" alt="TinkeringTech logo" />
+        <span class="brand-text">
+          <span class="brand-name">TinkeringTech</span>
+          <span class="tagline">DIY electronics projects and technology</span>
+        </span>
+      </a>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/diy-electronics/">DIY Electronics</a>
+        <a href="/blog/">Blog</a>
+      </nav>
+    </div>
   </header>
   <main>
     <slot />
