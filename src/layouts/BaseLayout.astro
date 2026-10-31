@@ -262,6 +262,8 @@ const { title, description = 'DIY electronics projects and technology from Tinke
     footer a:hover {
       color: var(--accent);
     }
+    .tm { font-size: 0.5em; font-weight: 500; margin-left: 0.1em; vertical-align: super; line-height: 0; }
+    .footer-legal { font-size: 0.8em; opacity: 0.8; }
   </style>
 </head>
 <body>
@@ -270,7 +272,7 @@ const { title, description = 'DIY electronics projects and technology from Tinke
       <a class="brand" href="/">
         <img src="/images/site/logo.png" alt="TinkeringTech logo" />
         <span class="brand-text">
-          <span class="brand-name">TinkeringTech</span>
+          <span class="brand-name">TinkeringTech<sup class="tm">&trade;</sup></span>
           <span class="tagline">DIY electronics projects and technology</span>
         </span>
       </a>
@@ -285,7 +287,8 @@ const { title, description = 'DIY electronics projects and technology from Tinke
     <slot />
   </main>
   <footer>
-    <p>&copy; {new Date().getFullYear()} TinkeringTech &middot; <a href="/privacy-and-policy/">Privacy Policy</a></p>
+    <p>&copy; {new Date().getFullYear()} TinkeringTech LLC &middot; <a href="/privacy-and-policy/">Privacy Policy</a></p>
+    <p class="footer-legal">TinkeringTech&trade; and ScoutMakes&trade; are trademarks of TinkeringTech LLC.</p>
   </footer>
 </body>
 </html>
