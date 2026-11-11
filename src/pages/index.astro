@@ -6,9 +6,11 @@ const posts = (await getCollection('blog'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 5);
 ---
-<BaseLayout title="Home" description="DIY electronics projects, builds, and technology notes from TinkeringTech.">
-  <h1>TinkeringTech<sup class="tm">&trade;</sup></h1>
-  <p class="lede">DIY electronics projects and technology.</p>
+<BaseLayout title="Home" description="Hardware for makers. Breakout boards, maker kits, and home of ScoutMakes from TinkeringTech.">
+  <section class="hero">
+    <h1>Hardware for makers<span class="dot">.</span></h1>
+    <p class="hero-sub">Breakout boards &middot; Maker kits &middot; Home of ScoutMakes<sup class="tm">&trade;</sup></p>
+  </section>
 
   <h2>About Us</h2>
   <p>TinkeringTech is an ongoing electronics workbench, documenting hands-on builds since 2009 &mdash; Arduino and Adafruit projects, wearables, drones and RC gear, solar monitoring, and the occasional open-source hardware board like ScoutMakes Azul. Every project here comes with the schematics, code, and lessons learned, so you can build it yourself, adapt it, or just see how it works under the hood.</p>

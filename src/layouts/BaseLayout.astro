@@ -3,7 +3,7 @@ interface Props {
   title: string;
   description?: string;
 }
-const { title, description = 'DIY electronics projects and technology from TinkeringTech.' } = Astro.props;
+const { title, description = 'Hardware for makers. Breakout boards, maker kits, and home of ScoutMakes from TinkeringTech.' } = Astro.props;
 ---
 <!doctype html>
 <html lang="en">
@@ -144,6 +144,31 @@ const { title, description = 'DIY electronics projects and technology from Tinke
       margin-top: 2.5rem;
       padding-left: 0.75rem;
       border-left: 3px solid var(--accent);
+    }
+
+    .hero {
+      background-color: var(--dark);
+      background-image: var(--circuit);
+      background-size: 48px 48px;
+      border-radius: var(--radius);
+      padding: 2.5rem 2rem 2.25rem;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      color: #fff;
+      font-size: clamp(2rem, 7vw, 3.4rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin: 0 0 1.1rem;
+    }
+    .hero .dot { color: var(--accent); }
+    .hero-sub {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      color: var(--on-dark-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-size: clamp(0.7rem, 2.4vw, 0.95rem);
+      margin: 0;
     }
     .lede {
       color: var(--muted);
