@@ -13,7 +13,7 @@ const { title, description = 'DIY electronics projects and technology from Tinke
   <title>{title} – TinkeringTech</title>
   <meta name="description" content={description} />
   <link rel="icon" href="/images/site/favicon.png" />
-  <link rel="apple-touch-icon" href="/images/site/logo.png" />
+  <link rel="apple-touch-icon" href="/images/site/apple-touch-icon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -78,7 +78,7 @@ const { title, description = 'DIY electronics projects and technology from Tinke
       color: var(--on-dark);
     }
     .brand img {
-      height: 42px;
+      height: 44px;
       width: auto;
       box-shadow: none;
       border-radius: 0;
@@ -269,12 +269,8 @@ const { title, description = 'DIY electronics projects and technology from Tinke
 <body>
   <header>
     <div class="header-inner">
-      <a class="brand" href="/">
-        <img src="/images/site/logo.png" alt="TinkeringTech logo" />
-        <span class="brand-text">
-          <span class="brand-name">TinkeringTech<sup class="tm">&trade;</sup></span>
-          <span class="tagline">DIY electronics projects and technology</span>
-        </span>
+      <a class="brand" href="/" aria-label="TinkeringTech home">
+        <img src="/images/site/logo-wordmark.png" alt="TinkeringTech" width="205" height="44" />
       </a>
       <nav>
         <a href="/">Home</a>
